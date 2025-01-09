@@ -1,0 +1,17 @@
+# Ignore Angular frontend build folder
+/frontend
+/dist
+
+# Ignore node_modules (for both frontend and backend)
+node_modules/
+
+# Ignore other temporary files, logs, or environment-specific files
+*.log
+.env
+
+# Ignore build artifacts and other IDE-specific folders
+.vscode/
+.idea/
+
+# Keep only the backend folder (if it is inside the same repository)
+!/backend

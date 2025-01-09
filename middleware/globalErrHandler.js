@@ -1,0 +1,27 @@
+const globalErrHangler = (err,req,res,next) =>{
+    //status
+    //message
+    //stack
+
+    const stack = err.stack;
+    const message = err.message;
+    const status = err.status ? err.status:"failed";
+    const statusCode = err.statusCode ? err.statusCode:500;
+
+    res.status(statusCode).json({
+        status,
+        message,
+        stack
+    })
+}
+
+//not found error
+
+const notFoundErr = (req,res,next)=>{
+    const err = new Error(`Can't find ${req,orginalUrl} on the server`);
+    next(err);
+}
+
+
+
+module.exports = {globalErrHangler,notFoundErr}
