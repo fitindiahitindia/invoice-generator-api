@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="http://localhost:5000/assets/style.css" type="text/css" media="all" />
+</head>
+<body>
+  <div>
+    <div class="py-4">
+      <div class="px-14 py-6">
+        <table class="w-full border-collapse border-spacing-0">
+          <tbody>
+            <tr>
+              <td class="w-full align-top">
+                <div>
+                  <img src="https://indianexpress.com/wp-content/themes/indianexpress/images/indian-express-logo-n.svg" class="h-12" />
+                </div>
+              </td>
+
+              <td class="align-top">
+                <div class="text-sm">
+                  <table class="border-collapse border-spacing-0">
+                    <tbody>
+                      <tr>
+                        <td class="border-r pr-4">
+                          <div>
+                            <p class="whitespace-nowrap text-slate-400 text-right">Date</p>
+                            <p class="whitespace-nowrap font-bold text-main text-right"><%= invoiceUpdate.date %></p>
+                          </div>
+                        </td>
+                        <td class="pl-4">
+                          <div>
+                            <p class="whitespace-nowrap text-slate-400 text-right">Invoice #</p>
+                            <p class="whitespace-nowrap font-bold text-main text-right"><%= invoiceUpdate.invoiceid %></p>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="bg-slate-100 px-14 py-6 text-sm">
+        <table class="w-full border-collapse border-spacing-0">
+          <tbody>
+            <tr>
+              <td class="w-1/2 align-top">
+                <div class="text-sm text-neutral-600">
+                  <p class="font-bold"><%= invoiceUpdate.seller.companyname %></p>
+                  <p>Mobile: <%= invoiceUpdate.seller.mobile %></p>
+                  <p>Email: <%= invoiceUpdate.seller.email %></p>
+                  <p>Address: <%= invoiceUpdate.seller.address %></p>
+                </div>
+              </td>
+              <td class="w-1/2 align-top text-right">
+                <div class="text-sm text-neutral-600">
+                  <p class="font-bold"><%= invoiceUpdate.buyer.name %> <%= invoiceUpdate.buyer.lname %></p>
+                  <p><%= invoiceUpdate.buyer.mobile %></p>
+                  <p><%= invoiceUpdate.buyer.email %></p>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="px-14 py-10 text-sm text-neutral-700">
+        <table class="w-full border-collapse border-spacing-0">
+          <thead>
+            <tr>
+              <td class="border-b-2 border-main pb-3 pl-3 font-bold text-main">#</td>
+              <td class="border-b-2 border-main pb-3 pl-2 font-bold text-main">Product details</td>
+              <td class="border-b-2 border-main pb-3 pl-2 text-right font-bold text-main">Price</td>
+              <td class="border-b-2 border-main pb-3 pl-2 text-center font-bold text-main">Qty.</td>
+              <td class="border-b-2 border-main pb-3 pl-2 text-center font-bold text-main">Discount</td>
+              <td class="border-b-2 border-main pb-3 pl-2 text-right font-bold text-main">Subtotal</td>
+              <td class="border-b-2 border-main pb-3 pl-2 pr-3 text-right font-bold text-main">Total</td>
+            </tr>
+          </thead>
+          <tbody>
+            <% invoiceUpdate.products.forEach(function(product, index) { %>
+              <tr>
+                  <td><%= index + 1 %></td>
+                  <td><%= product.productname %></td>
+                  <td class="text-right">&#8377; <%= product.saleprice %></td>
+                  <td class="text-center"><%= product.quantity %></td>
+                  <td class="text-center"><% if (product.discount) { %>
+                    &#8377;
+                  <% } %>
+                  <%= product.discount || 'No Discount' %></td>
+                  <td class="text-right"><%= product.subtotal %></td>
+                  <td class="text-right">&#8377; <%= product.totalprice %></td>
+              </tr>
+          <% }); %>
+           
+            <tr>
+              <td colspan="7">
+                <table class="w-full border-collapse border-spacing-0">
+                  <tbody>
+                    <tr>
+                      <td class="w-full"></td>
+                      <td>
+                        <table class="w-full border-collapse border-spacing-0">
+                          <tbody>
+                            <tr>
+                              <td class="bg-main p-3">
+                                <div class="whitespace-nowrap font-bold text-white">Total:</div>
+                              </td>
+                              <td class="bg-main p-3 text-right">
+                                <div class="whitespace-nowrap font-bold text-white">&#8377; <%= invoiceUpdate.grandTotal %></div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      </div>
+    </div>
+
+  </body>
+  </html>

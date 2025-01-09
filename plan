@@ -1,0 +1,13 @@
+user
+ -register
+ -login
+ -dashboard
+  -home
+   -total leave left
+  -leave
+   -apply leave
+  -setting
+   -password
+   
+admin
+employee
