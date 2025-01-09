@@ -25,6 +25,11 @@ app.use(cors());
 
 // app.use("/api/v1/adminAuth",adminRoute);
 // app.use("/api/v1/userAuth",userRoute);
+app.use("/",(req,res)=>{
+    return res.status(200).json({
+        msg:"Welcome to invoice generator api"
+    })
+})
 app.use("/api/v1/product",productRoute);
 app.use("/api/v1/seller",sellerRoute);
 app.use("/api/v1/buyer",buyerRoute);
