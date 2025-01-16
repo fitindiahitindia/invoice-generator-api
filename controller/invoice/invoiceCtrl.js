@@ -37,7 +37,7 @@ exports.downloadInvoice = expressAsyncHandler(async (req, res) => {
       res.sendFile(pdfUrl);
       return;
     }
-
+    console.log(`${req.protocol}://${req.get("host")}` + "/api/v1/invoice/viewInvoice/"+req.params.id)
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
     await page.goto (
