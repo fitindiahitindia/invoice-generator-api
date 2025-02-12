@@ -47,6 +47,11 @@ const productSchema = new mongoose.Schema({
         enum:['active','pending','disable'],
         default:"pending"
       },
+      user:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"User",
+        required:true
+      }
 },{timestamps:true})
 
 const Product = mongoose.model("Product",productSchema);

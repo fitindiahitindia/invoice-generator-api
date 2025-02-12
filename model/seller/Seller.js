@@ -36,6 +36,14 @@ const sellerSchema = new mongoose.Schema({
         enum:['active','pending','disable'],
         default:"pending"
       },
+      logo:{
+        type:String
+      },
+      user:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"User",
+        required:true
+      }
 },{timestamps:true})
 
 const Seller = mongoose.model("Seller",sellerSchema);

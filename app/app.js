@@ -23,8 +23,14 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(cors());
 
+app.get("/",(req,res)=>{
+    return res.status(200).json({
+        msg:"Welcome to invoice generator api"
+    })
+})
+
 // app.use("/api/v1/adminAuth",adminRoute);
-// app.use("/api/v1/userAuth",userRoute);
+app.use("/api/v1/userAuth",userRoute);
 app.use("/api/v1/product",productRoute);
 app.use("/api/v1/seller",sellerRoute);
 app.use("/api/v1/buyer",buyerRoute);
@@ -39,7 +45,7 @@ app.use("/api/v1/invoice",invoiceRoute);
 // static  url
 app.use('/assets',express.static(path.join(__dirname,'../public/assets')))
 app.use('/invoices',express.static(path.join(__dirname,'../public')))
-
+app.use('/sellerLogo',express.static(path.join(__dirname,'../public/sellerLogo')))
 
 
 //Error middlewares

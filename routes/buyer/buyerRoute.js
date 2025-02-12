@@ -6,16 +6,18 @@ const {
     updateBuyer,
     // deleteBuyer,
  } = require("../../controller/buyer/buyerCtrl");
+const isAuthenticated = require("../../middleware/isAuthenticated");
+const User = require("../../model/auth/User");
 
 const buyerRoute = express.Router();
 
 //create
-buyerRoute.post("/addBuyer",addBuyer)
+buyerRoute.post("/addBuyer",isAuthenticated(User) ,addBuyer)
 //view
-buyerRoute.get("/viewBuyer/:id", viewBuyer)
-buyerRoute.get("/viewBuyers",viewBuyers)
+buyerRoute.get("/viewBuyer/:id",isAuthenticated(User), viewBuyer)
+buyerRoute.get("/viewBuyers",isAuthenticated(User),viewBuyers)
 //update
-buyerRoute.put("/updateBuyer/:id",updateBuyer)
+buyerRoute.put("/updateBuyer/:id",isAuthenticated(User),updateBuyer)
 //delete
 // buyerRoute.delete("/deleteBuyer/:id",deleteBuyer)
 

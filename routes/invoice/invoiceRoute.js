@@ -5,6 +5,8 @@ const {
     generateInvoice,
     viewInvoices
  } = require("../../controller/invoice/invoiceCtrl");
+const isAuthenticated = require("../../middleware/isAuthenticated");
+const User = require("../../model/auth/User");
 
 const invoiceRoute = express.Router();
 
@@ -12,10 +14,10 @@ const invoiceRoute = express.Router();
 invoiceRoute.get("/downloadInvoice/:id",downloadInvoice)
 //view
 invoiceRoute.get("/viewInvoice/:id", viewInvoice)
-invoiceRoute.get("/viewInvoices",viewInvoices)
+invoiceRoute.get("/viewInvoices",isAuthenticated(User),viewInvoices)
 
 //generate
-invoiceRoute.post("/generateInvoice", generateInvoice)
+invoiceRoute.post("/generateInvoice",isAuthenticated(User), generateInvoice)
 
 //update
 // invoiceRoute.put("/updateProduct/:id",updateProduct)

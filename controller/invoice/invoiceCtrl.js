@@ -135,7 +135,9 @@ exports.generateInvoice = expressAsyncHandler(async (req, res) => {
       seller: seller._id,
       buyer: buyer._id,
       products: products,
-      date: todayDate.toLocaleDateString(),
+      date:await todayDate.toLocaleDateString(),
+      time:await todayDate.getHours() + ":" + todayDate.getMinutes() + ":" + todayDate.getSeconds(),
+      user:await req.userAuth._id
     });
 
     return res.status(201).json({
@@ -253,7 +255,7 @@ exports.viewInvoice = expressAsyncHandler(async (req, res) => {
 //@access  private
 exports.viewInvoices = expressAsyncHandler(async (req, res) => {
   const invoices = await Invoice.find(
-    {},
+    {user:req.userAuth._id},
     {
       _id: false,
       createdAt: false,
@@ -322,8 +324,8 @@ exports.updateInvoice = expressAsyncHandler(async (req, res) => {
   }
 });
 
-//@desc    delete product
-//@route   DELETE api/v1/product/deleteProduct/:id
+//@desc    delete invoice
+//@route   DELETE api/v1/product/deleteInvoice/:id
 //@access  private
 exports.deleteInvoice = expressAsyncHandler(async (req, res) => {
   try {

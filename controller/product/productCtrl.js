@@ -25,13 +25,14 @@ exports.addProduct = expressAsyncHandler(async (req,res)=>{
     
     //product created
     try {
-    const createproduct = await Product.create({
+     await Product.create({
         productname:productname,
         description:description,
         quantity:quantity,
         saleprice:saleprice,
         discount:discount,
         discounttype:discounttype,
+        user:await req.userAuth._id
     })
     //response    
     return res.status(201).json({
@@ -79,7 +80,7 @@ exports.viewProduct = expressAsyncHandler(async (req,res)=>{
 //@route   GET api/v1/product/viewproducts
 //@access  private
 exports.viewProducts = expressAsyncHandler(async (req,res)=>{
-    const viewproducts  = await Product.find({},{
+    const viewproducts  = await Product.find({user:req.userAuth._id},{
         _id:false,
         createdAt:false,
         updatedAt:false,

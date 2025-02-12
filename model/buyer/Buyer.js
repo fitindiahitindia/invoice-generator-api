@@ -31,6 +31,11 @@ const buyerSchema = new mongoose.Schema({
         enum:['active','pending','disable'],
         default:"pending"
       },
+      user:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"User",
+        required:true
+      }
 },{timestamps:true})
 
 const Buyer = mongoose.model("Buyer",buyerSchema);

@@ -32,6 +32,7 @@ exports.addBuyer = expressAsyncHandler(async (req,res)=>{
         lname:lname,
         mobile:mobile,
         email:email,
+        user:await req.userAuth._id
     })
     //response    
     return res.status(201).json({
@@ -78,7 +79,7 @@ exports.viewBuyer = expressAsyncHandler(async (req,res)=>{
 //@route   GET api/v1/buyer/viewBuyers
 //@access  private
 exports.viewBuyers = expressAsyncHandler(async (req,res)=>{
-    const viewbuyers  = await Buyer.find({},{
+    const viewbuyers  = await Buyer.find({user:req.userAuth._id},{
         createdAt:false,
         updatedAt:false,
         __v:false,

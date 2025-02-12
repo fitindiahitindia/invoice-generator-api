@@ -9,7 +9,7 @@ const isAuthenticated = (model) =>{
             const err = new Error("Token Missing");
             return res.json({
               status:"failed",
-              message:"Token is required"
+              message:"login required"
           })
         }
 
