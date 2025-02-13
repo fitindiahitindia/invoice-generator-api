@@ -30,6 +30,14 @@ app.get("/",(req,res)=>{
 })
 
 // app.use("/api/v1/adminAuth",adminRoute);
+// app.use("/api/v1/userAuth",userRoute);
+app.get("/",(req,res)=>{
+    return res.status(200).json({
+        msg:"Welcome to invoice generator api"
+    })
+})
+
+
 app.use("/api/v1/userAuth",userRoute);
 app.use("/api/v1/product",productRoute);
 app.use("/api/v1/seller",sellerRoute);
